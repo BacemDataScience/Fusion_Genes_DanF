@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -J Sorting
+#SBATCH -o samtools-%j.out
+#SBATCH -t 12:00:00
+
+module load samtools
+module load java/jdk8u73
+module load picard/2.17.0
+
+name=${1%????}
+base_name=$(basename $name)".sorted.bam"
+out_dir=/pghbio/dbmi/Genomics_Core/rmh55/Dan_Faden/SN0145541/sorted_BAMs
+
+samtools sort -@ 14 -n $1 -o $out_dir/$base_name

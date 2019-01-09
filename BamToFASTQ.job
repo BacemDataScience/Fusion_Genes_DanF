@@ -1,0 +1,35 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -t 10:00:00
+
+module load samtools
+module load java/jdk8u73
+module load picard/2.17.0
+
+BAMs=/pghbio/dbmi/Genomics_Core/rmh55/Dan_Faden/SN0145541/sorted_BAMs
+OUT=/pghbio/dbmi/Genomics_Core/rmh55/Dan_Faden/SN0145541/RevertedFastq
+mkdir $OUT
+
+cpu=0
+for file in $BAMs/*.sorted.bam
+do
+        # get the file base name
+    filebase=`basename $file`
+    # obtain sample name from the basename (1.wm.ffpe.lt.rna.sorted.bam -> 1.wm.ffpe.lt)
+    sample=${filebase%.sorted.bam}
+
+    # parallel processing, by assigning one task to one cpu.
+    numactl -C +$cpu java -jar $PICARD_HOME/picard.jar \
+                                                        SamToFastq \
+                                                        I=$file  \
+                                                        FASTQ=${OUT}/${sample}_r1.fastq \
+                                                        SECOND_END_FASTQ=${OUT}/${sample}_r2.fastq &
+    ((cpu= cpu+1))
+    if ((cpu == 27))
+    then
+        cpu=0
+        wait
+    fi
+done
+wait
