@@ -19,7 +19,7 @@ STAR-Fusion version 1.3.1 was then run on the paired end FASTQ files of all 50 s
 https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
 ## Exclusion Criteria ##
 Reported fusions are typically excluded if they satisfy any of the following:
-* Fusion containese uncharacterized genes, immunoglobulin genes, or mitochondrial genes were excluded
+* Fusion contains uncharacterized genes, immunoglobulin genes, or mitochondrial genes
 *	Fusion contains paralogous genes
 *	The fusion has been reported in normal tissue samples
 *	FFPM < 0.1  
