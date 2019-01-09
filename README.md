@@ -5,9 +5,7 @@ All analysis was conducted on the University of Pittsburgh Supercomputer's HTC c
 ## Dataset ##
 We received a total of 50 samples
   * 8 paired end reverse strand samples (SN0145541)
-    PATH: /pghbio/dbmi/Genomics_Core/rmh55/Dan_Faden/ SN0145541/
   * 42 paired end reverse strand samples (SN0148531)
-    PATH: /pghbio/dbmi/Genomics_Core/rmh55/Dan_Faden/SN0148531/
 ## Quality Control ##
 FASTQC was run on all input files. Quality of the reads suffered due to Formalin-Fixed Paraffin-Embedded (FFPE) preservation of the majority of the tissues.
 ## Conversion to FASTQ ##
